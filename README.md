@@ -12,3 +12,9 @@ Lampiran *simulation slow subscriber* <br>
 ![Simulation slow subscriber](image4.png)<br>
 
 Pada lampiran diatas, terlihat bahwa pada waktu tertentu terdapat 50-100 *queued messages* pada waktu tertentu. Ini terjadi karena perubahan yang dilakukan ketika subscriber menerima message lebih lama. Hal ini menyebabkan penumpukkan message karena data subscriber tidak dapat memproses pesan secepat publisher mengirimkannya. Pada kondisi ini juga dilakukan *cargo run* secara berulang pada *publisher* sehingga juga menyebabkan jumlah pesan yang diambil (prefetch count) oleh subscriber terlalu tinggi sehingga subscriber mungkin kelebihan beban dengan terlalu banyak pesan untuk diproses sekaligus. Jadi, ketika terjadi ketidak seimbangan antara laju pengiriman pesan  oleh publisher dan laju pemrosesan pesan oleh subscriber dapat menyebabkan antrian message.
+
+Lampiran *running 3 subscribers* <br>
+![Simulation 3 subscriber](image5.png)<br>
+![RabbitMQ](image6.png)<br>
+
+Pada gambar diatas, dapat terlihat bahwa ketika jumlah subscriber ditingkatkan dapat membantu dalam mengurangi jumlah pesan yang tertunda dalam queue. Ini berarti, dengan adanya beberapa *subscriber*, pesan dapat diproses secara paralel. Artinya beberapa subscriber dapat bekerja secara bersamaan untuk memroses pesan yang masuk. Hal ini memungkinkan distribusi beban kerja yang lebih merata dan mempercepat waktu respon keseluruhan sistem terhadap pesan yang masuk. Jadi, dengan meningkatnya jumlah subscriber akan semakin menjaga keseimbangan antara laju pengiriman pesan oleh publisher dan laju pemrosesan pesan oleh subscriber yang berdampak positif terhadap menurunnya antrian pada message queue.
